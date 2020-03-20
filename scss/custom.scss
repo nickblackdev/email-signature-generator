@@ -1,0 +1,306 @@
+$grid-columns: 12;
+$max-width: 1024px;
+$visual-grid: false;
+$visual-grid-index: front;
+$visual-grid-color: red;
+
+@import "bourbon","neat";
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700&display=swap');
+
+//MOBILE MEDIA QUERIES
+$xlargeDesktop: new-breakpoint(min-width 1600px);
+$largeDesktop: new-breakpoint(min-width 940px max-width 1325px);
+$smallDesktop: new-breakpoint(min-width 768px max-width 939px);
+$iPad: new-breakpoint(min-width 768px max-width 1024px);
+$allDesktop: new-breakpoint(min-width 768px);
+$allMobile: new-breakpoint(max-width 767px);
+$tablet: new-breakpoint(min-width 640px max-width 767px);
+$smallTablet: new-breakpoint(min-width 480px max-width 639px);
+$phone: new-breakpoint(max-width 479px);
+$smallPhone: new-breakpoint(max-width 320px);
+
+// Colors
+$darkGreen: #013750;
+$green: #366a76;
+$lightGreen: #2f898f;
+$bg: #2f898f;
+$accent: #E44D4E;
+
+// Fonts
+$lato: 'Lato', sans-serif;
+
+html {
+    box-sizing: border-box;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+html {
+    overflow-x: hidden;
+    font-family: $lato;
+}
+
+.container {
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding-top: 0 !important;
+    @include media($allMobile) {
+        width: 100% !important;
+        padding: 0 10px !important;
+    }
+}
+
+.container::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.container::before {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 0 20px;
+    }
+}
+
+.header-content {
+    max-width: 750px;
+}
+
+.card {
+    background-color: #013750;
+    border-radius: 15px;
+    color: #2f898f;
+    text-align: center;
+    margin: 25px auto 35px auto;
+    padding: 25px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: $bg;
+    font-size: 16px;
+    background: rgb(54,106,118);
+    background: radial-gradient(circle, rgba(54,106,118,1) 0%, rgba(47,137,143,1) 100%, rgba(255,255,255,1) 100%);
+}
+
+h1, h2, h3 {
+    font-family: $lato;
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+.signature {
+    float: left;
+    display: block;
+    margin-bottom: 40px;
+    margin-right: 2.3576515979%;
+    width: 48.821174201%;
+}
+
+.signature {
+    @include media($allMobile) {
+         min-width: 100% !important;
+    }
+}
+
+.signature:last-child {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 767px) {
+    .signature {
+        float: left;
+        display: block;
+        margin-right: 2.3576515979%;
+        width: 100%;
+        min-width: 400px;
+    }
+
+    .signature:last-child {
+        margin-right: 0;
+    }
+}
+
+.form {
+    margin-bottom: 70px;
+    float: left;
+    display: block;
+    margin-right: 2.3576515979%;
+    width: 48.821174201%;
+}
+
+.form:last-child {
+    margin-right: 0;
+}
+
+@media screen and (max-width: 767px) {
+    .form {
+        float: left;
+        display: block;
+        margin-right: 2.3576515979%;
+        width: 100%;
+    }
+
+    .form:last-child {
+        margin-right: 0;
+    }
+}
+
+label {
+    margin-right: 20px;
+}
+
+input {
+    font-family: $lato;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 7px;
+    padding: 14px 8px;
+    background-color: $lightGreen;
+    border: 1px solid $lightGreen;
+    color: $darkGreen;
+}
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $darkGreen;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+    color: $darkGreen;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+    color: $darkGreen;
+}
+input:-moz-placeholder { /* Firefox 18- */
+    color: $darkGreen;
+}
+
+@media screen and (max-width: 767px) {
+    input {
+        width: 100%;
+    }
+}
+
+.btn {
+    text-decoration: none;
+    display: block;
+    float: left;
+    padding: 15px;
+    background-color: $lightGreen;
+    color: #fff;
+    border: none;
+    font-family: $lato;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: $accent;
+}
+
+.email-signature-code {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.signature p {
+    margin-bottom: 0;
+}
+
+#sig-code {
+    background-color: #fff;
+    margin-bottom: 25px;
+}
+
+.signature img {
+    max-width: 500px;
+}
+
+.entry-content table, body.et-pb-preview #main-content .container table {
+    border: none;
+}
+
+.entry-content tr td, body.et-pb-preview #main-content .container tr td {
+    border: none;
+}
+
+.entry-content tr td, body.et-pb-preview #main-content .container tr td {
+    padding: 0 !important;
+}
+
+input[type=text], input[type=password], input[type=tel], input[type=email], input.text, input.title, textarea, select {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#share-url {
+    p {
+        word-wrap: break-word;
+        background-color: #fff;
+        margin-bottom: 35px;
+        padding: 25px;
+        display: block;
+    }
+}
+
+#downloadLink {
+    display: block;
+    float: left;
+    padding: 15px;
+    background-color: $darkGreen;
+    color: #fff;
+    border: none;
+    font-family: $lato;
+    text-transform: uppercase;
+    margin-bottom: 100px;
+    &:hover {
+        background-color: $accent;
+    }
+}
+
+// .btn {
+//      display: block;
+//      padding: 15px;
+//      background-color: $darkGreen;
+//      color: #fff;
+//      border: none;
+//      font-family: $lato;
+//      text-transform: uppercase;
+//      margin: 25px auto 0 auto;
+//      width: 50%;
+//      text-decoration: none;
+//      &:hover {
+//         background-color: $accent;
+//     }
+//     @include media($allMobile) {
+//         width: 100%;
+//     }
+// }
+
+.email-signature-code p {
+    margin: 0 !important;
+}
+
