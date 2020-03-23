@@ -5,7 +5,7 @@ This is a starter project for an employee email signature generator.
 
 ## Live Demo
 
-[nickblack](https://nickblack.io/email-signature-generator)
+[nickblack.io/email-signature-generator](https://nickblack.io/email-signature-generator)
 
 ## Authors
 
