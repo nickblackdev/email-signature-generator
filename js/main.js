@@ -6,21 +6,20 @@ jQuery(document).ready(function($){
   var textOfficePhone = $('#textOfficePhone');
   var textMobilePhone = $('#textMobilePhone');
 
-	// Extend Jquery to get variable of paremeters in url
-	$.extend({
+  // Extend Jquery to get variable of paremeters in url
+  $.extend({
     getUrlVars: function(){
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-      hash = hashes[i].split('=');
-      vars.push(hash[0]);
-      vars[hash[0]] = hash[1];
-    }
-    return vars;
+      var vars = [], hash;
+      var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+      for(var i = 0; i < hashes.length; i++) {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+      }
+      return vars;
     },
     getUrlVar: function(name){
-    return $.getUrlVars()[name];
+      return $.getUrlVars()[name];
     }
   });
 
@@ -33,54 +32,62 @@ jQuery(document).ready(function($){
 
 	setTimeout(function(){
 
-		// Getting URL var by its name
-		var name = $.getUrlVar('nameInput');
-		var title = $.getUrlVar('titleInput');
-		var email = $.getUrlVar('emailInput');
-		var mobilephone = $.getUrlVar('mobilePhoneInput');  
-		// var initName = name.replace(/\++/g, ' ');
-		//console.log(initName);
-		var nameDecode = decodeURIComponent(name);
-		var titleDecode = decodeURIComponent(title);
-		var initName = nameDecode.replace(/\++/g, ' ').replace(/\%2C/g, ',').replace(/\%3A/g, ':').replace(/\%2F/g, '/').replace(/\%28/g, '(').replace(/\%29/g, ')').replace(/\%26/g, '&').replace(/\%7C/g, '|').replace(/\%3B/g, ';').replace(/\%27/g, "'").replace(/\%60/g, "`");
-		var initTitle = titleDecode.replace(/\++/g, ' ').replace(/\%2C/g, ',').replace(/\%3A/g, ':').replace(/\%2F/g, '/').replace(/\%28/g, '(').replace(/\%29/g, ')').replace(/\%26/g, '&').replace(/\%7C/g, '|').replace(/\%3B/g, ';').replace(/\%27/g, "'").replace(/\%60/g, "`");
-		var initEmail = email.replace(/\%40/g, '@');
-		var initMobilePhone = mobilephone;
+    // Getting URL var by its name
+    var name = $.getUrlVar('nameInput');
+    var title = $.getUrlVar('titleInput');
+    var email = $.getUrlVar('emailInput');
+    var mobilephone = $.getUrlVar('mobilePhoneInput');
+    var officephone = $.getUrlVar('officePhoneInput');  
+    // var initName = name.replace(/\++/g, ' ');
 
-		$('#nameInput').attr("placeholder", initName);
-		$('#nameInput').val(initName);
+    var nameDecode = decodeURIComponent(name);
+    var titleDecode = decodeURIComponent(title);
+    var initName = nameDecode.replace(/\++/g, ' ').replace(/\%2C/g, ',').replace(/\%3A/g, ':').replace(/\%2F/g, '/').replace(/\%28/g, '(').replace(/\%29/g, ')').replace(/\%26/g, '&').replace(/\%7C/g, '|').replace(/\%3B/g, ';').replace(/\%27/g, "'").replace(/\%60/g, "`");
+    var initTitle = titleDecode.replace(/\++/g, ' ').replace(/\%2C/g, ',').replace(/\%3A/g, ':').replace(/\%2F/g, '/').replace(/\%28/g, '(').replace(/\%29/g, ')').replace(/\%26/g, '&').replace(/\%7C/g, '|').replace(/\%3B/g, ';').replace(/\%27/g, "'").replace(/\%60/g, "`");
+    var initEmail = email.replace(/\%40/g, '@');
+    var initOfficePhone = officephone;
+    var initMobilePhone = mobilephone;
 
-		$('#titleInput').attr("placeholder", initTitle);
-		$('#titleInput').val(initTitle);
+    $('#nameInput').attr("placeholder", initName);
+    $('#nameInput').val(initName);
 
-		$('#emailInput').attr("placeholder", initEmail);
-		$('#emailInput').val(initEmail);
+    $('#titleInput').attr("placeholder", initTitle);
+    $('#titleInput').val(initTitle);
 
-		$('#textName').text(initName);
-		$('#textTitle').text(initTitle);
-		$('#textEmail').text(initEmail);
-		$('#textEmail').attr("href", "mailto:"+initEmail);
+    $('#emailInput').attr("placeholder", initEmail);
+    $('#emailInput').val(initEmail);
 
-		$('#mobilePhoneInput').val(initMobilePhone);
+    $('#textName').text(initName);
+    $('#textTitle').text(initTitle);
+    $('#textEmail').text(initEmail);
+    $('#textEmail').attr("href", "mailto:"+initEmail);
+    $('#officePhoneInput').val(initOfficePhone);
+    $('#mobilePhoneInput').val(initMobilePhone);
 
-		var mobilePhoneInput = $('#mobilePhoneInput').val();
-		var mobilePhoneInputRaw = mobilePhoneInput.replace(/\D[^\.]/g, "");
-		var mobilePhoneInputCleaned = mobilePhoneInputRaw.slice(0,3)+"."+mobilePhoneInputRaw.slice(3,6)+"."+mobilePhoneInputRaw.slice(6);
-		textMobilePhone.text(mobilePhoneInputCleaned);
-		textMobilePhone.attr("href", "tel:"+mobilePhoneInputRaw);
+    var officePhoneInput = $('#officePhoneInput').val();
+    var officePhoneInputRaw = officePhoneInput.replace(/\D[^\.]/g, "");
+    var officePhoneInputCleaned = officePhoneInputRaw.slice(0,3)+"."+officePhoneInputRaw.slice(3,6)+"."+officePhoneInputRaw.slice(6);
+    textOfficePhone.text(officePhoneInputCleaned);
+    textOfficePhone.attr("href", "tel:"+officePhoneInputRaw);
 
-		//Output Url to share
-		var url = window.location.href;
-		$('#share-url p').show().text(url);
+    var mobilePhoneInput = $('#mobilePhoneInput').val();
+    var mobilePhoneInputRaw = mobilePhoneInput.replace(/\D[^\.]/g, "");
+    var mobilePhoneInputCleaned = mobilePhoneInputRaw.slice(0,3)+"."+mobilePhoneInputRaw.slice(3,6)+"."+mobilePhoneInputRaw.slice(6);
+    textMobilePhone.text(mobilePhoneInputCleaned);
+    textMobilePhone.attr("href", "tel:"+mobilePhoneInputRaw);
 
-		// Show code on page
+    //Output Url to share
+    var url = window.location.href;
+    $('#share-url p').show().text(url);
+
+    // Show code on page
     var html = $('.email-signature-code').html();
     $('.results-card').show();
-		$('#downloadLink').show();
-		$('#sig-code').show().append().text(html).css('padding', '25px');
-		$('.text-header').show();
+    $('#downloadLink').show();
+    $('#sig-code').show().append().text(html).css('padding', '25px');
+    $('.text-header').show();
 
-	}, 5);
+  }, 5);
 
 
 	$('#nameInput').on('input',function(e){
@@ -97,6 +104,14 @@ jQuery(document).ready(function($){
 	  var emailInput = $('#emailInput').val();
 	  textEmail.text(emailInput);
 	  textEmail.attr("href", "mailto:"+emailInput);
+  });
+  
+  $('#officePhoneInput').on('input',function(e){
+	  var officePhoneInput = $('#officePhoneInput').val();
+	  var officePhoneInputRaw = officePhoneInput.replace(/\D[^\.]/g, "");
+	  var officePhoneInputCleaned = officePhoneInputRaw.slice(0,3)+"."+officePhoneInputRaw.slice(3,6)+"."+officePhoneInputRaw.slice(6);
+	  textOfficePhone.text(officePhoneInputCleaned);
+	  textOfficePhone.attr("href", "tel:"+officePhoneInputRaw);
 	});
 
 	$('#mobilePhoneInput').on('input',function(e){
