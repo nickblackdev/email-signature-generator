@@ -114,10 +114,10 @@ jQuery(document).ready(function($){
 	  var link = document.createElement('a');
 	  mimeType = mimeType || 'text/plain';
 
-		  link.setAttribute('download', filename);
+    link.setAttribute('download', filename);
 
-		  link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
-		  link.click();
+    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
+    link.click();
 	}
 
 	var fileName =  'email-sig.htm';
