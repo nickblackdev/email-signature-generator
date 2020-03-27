@@ -1,6 +1,10 @@
 jQuery(document).ready(function($){
 
-
+  var textName = $('#textName');
+  var textTitle = $('#textTitle');
+  var textEmail = $('#textEmail');
+  var textOfficePhone = $('#textOfficePhone');
+  var textMobilePhone = $('#textMobilePhone');
 
 	// Extend Jquery to get variable of paremeters in url
 	$.extend({
