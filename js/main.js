@@ -8,38 +8,35 @@ jQuery(document).ready(function($){
 
 	// Extend Jquery to get variable of paremeters in url
 	$.extend({
-      getUrlVars: function(){
-        var vars = [], hash;
-        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-        for(var i = 0; i < hashes.length; i++)
-        {
-          hash = hashes[i].split('=');
-          vars.push(hash[0]);
-          vars[hash[0]] = hash[1];
-        }
-        return vars;
-      },
-      getUrlVar: function(name){
-        return $.getUrlVars()[name];
-      }
-    });
+    getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+    },
+    getUrlVar: function(name){
+    return $.getUrlVars()[name];
+    }
+  });
 
-    // Get object of URL parameters
-    var allVars = $.getUrlVars();
+  // Get object of URL parameters
+  var allVars = $.getUrlVars();
 
 	// Hide url and code sections on page load
 	$('.results-card').hide();
-    $('.text-header').hide();
-    
+  $('.text-header').hide();
 
 	setTimeout(function(){
 
 		// Getting URL var by its name
-
 		var name = $.getUrlVar('nameInput');
 		var title = $.getUrlVar('titleInput');
 		var email = $.getUrlVar('emailInput');
-		var officephone = $.getUrlVar('officePhoneInput');
 		var mobilephone = $.getUrlVar('mobilePhoneInput');
 		// var initName = name.replace(/\++/g, ' ');
 		//console.log(initName);
@@ -48,7 +45,6 @@ jQuery(document).ready(function($){
 		var initName = nameDecode.replace(/\++/g, ' ').replace(/\%2C/g, ',').replace(/\%3A/g, ':').replace(/\%2F/g, '/').replace(/\%28/g, '(').replace(/\%29/g, ')').replace(/\%26/g, '&').replace(/\%7C/g, '|').replace(/\%3B/g, ';').replace(/\%27/g, "'").replace(/\%60/g, "`");
 		var initTitle = titleDecode.replace(/\++/g, ' ').replace(/\%2C/g, ',').replace(/\%3A/g, ':').replace(/\%2F/g, '/').replace(/\%28/g, '(').replace(/\%29/g, ')').replace(/\%26/g, '&').replace(/\%7C/g, '|').replace(/\%3B/g, ';').replace(/\%27/g, "'").replace(/\%60/g, "`");
 		var initEmail = email.replace(/\%40/g, '@');
-		var initOfficePhone = officephone;
 		var initMobilePhone = mobilephone;
 
 		$('#nameInput').attr("placeholder", initName);
@@ -64,13 +60,8 @@ jQuery(document).ready(function($){
 		$('#textTitle').text(initTitle);
 		$('#textEmail').text(initEmail);
 		$('#textEmail').attr("href", "mailto:"+initEmail);
-		$('#officePhoneInput').val(initOfficePhone);
+
 		$('#mobilePhoneInput').val(initMobilePhone);
-		var officePhoneInput = $('#officePhoneInput').val();
-		var officePhoneInputRaw = officePhoneInput.replace(/\D[^\.]/g, "");
-		var officePhoneInputCleaned = officePhoneInputRaw.slice(0,3)+"."+officePhoneInputRaw.slice(3,6)+"."+officePhoneInputRaw.slice(6);
-		textOfficePhone.text(officePhoneInputCleaned);
-		textOfficePhone.attr("href", "tel:"+officePhoneInputRaw);
 
 		var mobilePhoneInput = $('#mobilePhoneInput').val();
 		var mobilePhoneInputRaw = mobilePhoneInput.replace(/\D[^\.]/g, "");
@@ -83,8 +74,8 @@ jQuery(document).ready(function($){
 		$('#share-url p').show().text(url);
 
 		// Show code on page
-        var html = $('.email-signature-code').html();
-        $('.results-card').show();
+    var html = $('.email-signature-code').html();
+    $('.results-card').show();
 		$('#downloadLink').show();
 		$('#sig-code').show().append().text(html).css('padding', '25px');
 		$('.text-header').show();
@@ -108,14 +99,6 @@ jQuery(document).ready(function($){
 	  textEmail.attr("href", "mailto:"+emailInput);
 	});
 
-	$('#officePhoneInput').on('input',function(e){
-	  var officePhoneInput = $('#officePhoneInput').val();
-	  var officePhoneInputRaw = officePhoneInput.replace(/\D[^\.]/g, "");
-	  var officePhoneInputCleaned = officePhoneInputRaw.slice(0,3)+"."+officePhoneInputRaw.slice(3,6)+"."+officePhoneInputRaw.slice(6);
-	  textOfficePhone.text(officePhoneInputCleaned);
-	  textOfficePhone.attr("href", "tel:"+officePhoneInputRaw);
-	});
-
 	$('#mobilePhoneInput').on('input',function(e){
 	  var mobilePhoneInput = $('#mobilePhoneInput').val();
 	  var mobilePhoneInputRaw = mobilePhoneInput.replace(/\D[^\.]/g, "");
@@ -127,20 +110,20 @@ jQuery(document).ready(function($){
 	// Download HTM FIle
 	$('#downloadLink').hide(); // Hide Download button until show code button is clicked
 	function downloadInnerHtml(filename, elId, mimeType) {
-	    var elHtml = document.getElementById(elId).innerHTML;
-	    var link = document.createElement('a');
-	    mimeType = mimeType || 'text/plain';
+	  var elHtml = document.getElementById(elId).innerHTML;
+	  var link = document.createElement('a');
+	  mimeType = mimeType || 'text/plain';
 
-		    link.setAttribute('download', filename);
+		  link.setAttribute('download', filename);
 
-		    link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
-		    link.click();
+		  link.setAttribute('href', 'data:' + mimeType + ';charset=utf-8,' + encodeURIComponent(elHtml));
+		  link.click();
 	}
 
 	var fileName =  'email-sig.htm';
 
 	$('#downloadLink').click(function(){
-	    //downloadInnerHtml(fileName, 'sig-code','text/html');
+	  //downloadInnerHtml(fileName, 'sig-code','text/html');
 		var elHtml = document.getElementById('sig-code').innerHTML;
 		download(elHtml, "email-sig.htm", "text/html");
 	});
